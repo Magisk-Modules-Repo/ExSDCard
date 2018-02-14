@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<permissions>
+  <privapp-permissions package="com.package.name">
+	<permission name="android.permission.DUMP" />
+	<permission name="android.permission.READ_LOGS" />
+	<permission name="android.permission.DEVICE_POWER" />
+  </privapp-permissions>
+</permissions>
