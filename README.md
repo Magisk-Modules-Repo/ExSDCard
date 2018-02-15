@@ -10,29 +10,42 @@ Since the first version of the module "v9 Module - SD Write Access Enabler v1" i
 ### Short explanations
 Since Nougat, many apps (old and recently) cannot longer read/write propeply on external SDCard, its due to 6.0 permissions storage updates/changes.
 
-So apps devs must update to date their apps, or you must change your habit, that isn't cool.
+So apps devs must update to date their apps, or you must change your habit, that isn't very cool.
 
-With the v3, the modification script has been completly review and tested. However, the Oreo version is always under development, sorry for the delay. I work hard on it.
+By edit an xml file in system partition, we can get a new access to our external SDcard with all necessary permissions.
+This mod make that in system-lessy mode (powered by Magisk).
+The new access path for your external SDCard: /mnt/media_rw/SDCARDNUMBER/
 
-**The new access path for your external SDCard: /mnt/media_rw/SDCARDNUMBER/
+With the v3, the modification script has been completly review and tested.
+The v3.1 is especially designed for Oreo users, but it stay compatible for any Android version, it has been completly review and tested.
 
-Due to some users bugs reports, its seems that on some ROMs/kernels, its impossible to take into account the changes made to the proper xml file without toggler the SELinux from enforcing to the permissive mode.
-Its that why i have added two versions with one wich contain the SELinux toggler (in other words: two Magisk Modules in one).
+Please note: On Oreo, many manufacturers have started to replacing FUSE by SDCardFS, some users have reported to me that my module have works on their stocks/customs ROMs, and not for other ones.
+Unfortunatly i cannot make anything versus it and honestly i don't think that the situation will evolve because the config of SDcardFS is setup at the kernel level.
+
+About special feature on V3.1, look @XDA thread.
+
+Due to some users bugs reports, its seems that on some ROMs/kernels, its impossible to MODD the system propeply without toggler the SELinux from enforcing to the permissive mode.
+Its why i have added two versions with one wich contain the SELinux toggler
+
+In other words: one Modules ZIP version with an SELinux toggler for each module versions.
 
 ### Changelog
-v3:
-- The default patch was reviewed, so now, only the necessary parts of the system file will be eddited correctly
-- The module has been updated to the v15 (1500 - last stable) template from topjhonwu
--- As explained the previous module version is always taked in consideration in the Magisk module flash process. In other words, the previous and this new version works on v15.0.
-
+V3.1:
+- Two other txt files can be taked in consideration, they contains some more/less permissions, its has help been help some users.
+- If you want to use one of them, to make it happen, you must change the desired value from no to yes in the "ExSDCard.config.txt" file
+- For Oreo users:
+- You can setup same as explained before the txt config file, and place them in "/data/media/0/"
+- If needed, you can edit the "ExSDCard.O.*.applist.txt" file(s) by write your app(s) package(s) name(s) one by file, two different apps packages names have been writed in two separated TXT files in attachment, you can replace or lets them, as you want. By adding one of this file, the corresponding XML files will be created and putted in the right MODDIR path, needless to say do not touch the "privapp-permissions-com.package.name.xml" file, otherwise the boot script willn't works, you are warned now.
 - Several ZIP versions available:
--- one will be for Android 7.1.2 and lower
--- one for Android 7.1.2 and lower with an SELinux toggler
--- one for Android 8.x.x
--- one for Android 8.x.x with an SELinux toggler
-
+- one will be for Android 7.1.2 and lower
+- one for Android 7.1.2 and lower with an SELinux toggler
+- one for Android 8.x.x and lower
+- one for Android 8.x.x and lower with an SELinux toggler
+If you don't get any permissions issues with the v3, you can continue to use it, you will not see the notification in Download section from Magisk Manager app.
+If you would like to get the new version and that the v3 version works successfull on your phone, you can simply install the v3.1 and nothing more, it will works same as on v3.
 
 For old changelogs, check on [XDA link](https://forum.xda-developers.com/apps/magisk/module-exsdcard-write-access-enabler-t3670428)
+
 
 ### On your phones:
 ![alt text](https://img11.hostingpics.net/pics/435669Screenshot20171008172017.png "SCR_Onyourphone1")
@@ -83,4 +96,4 @@ Please give your feedbacks by specify your ROM name/version and your model phone
 
 
 ### Github source: <br />
-[https://github.com/xerta555/ExSDCard-Write-Access-Enabler-Nougat-v3/](https://github.com/xerta555/ExSDCard-Write-Access-Enabler-Nougat-v3/)
+[https://github.com/xerta555/ExSDCard_Write_Access_Enabler_v3.1](https://github.com/xerta555/ExSDCard_Write_Access_Enabler_v3.1)
