@@ -27,8 +27,6 @@ else
 	yes | cp -a "/system/etc/permissions/platform.xml" ./platform.xml
 
 		# Edit the xml file using sed
-		sed -i '/<group gid=\"sdcard_rw\" \/>/a\        <group gid="sdcard_all" />\' ./platform.xml
-		sed -i '/<permission name=\"android\.permission\.READ\_EXTERNAL\_STORAGE\" \/>/a\        <group gid=\"sdcard_r\" />\n' ./platform.xml
 		sed -i '/<permission name=\"android\.permission\.WRITE\_EXTERNAL\_STORAGE\" \/>/a\        <group gid=\"sdcard_r\" />\n\ \       \<group gid="sdcard_rw\" />\n\ \       \<group gid="media_rw\" /> ' ./platform.xml
 
 	# Edit the file permissions
