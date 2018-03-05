@@ -29,6 +29,10 @@ Its why i have added two versions with one wich contain the SELinux toggler
 
 In other words: one Modules ZIP version with an SELinux toggler for each module versions.
 
+### XDA officials downloads thread:
+[https://forum.xda-developers.com/apps/magisk/module-exsdcard-write-access-enabler-t3670428](https://forum.xda-developers.com/apps/magisk/module-exsdcard-write-access-enabler-t3670428)
+
+
 ### Changelog
 V3.1:
 - Two other txt files can be taked in consideration, they contains some more/less permissions, its has help been help some users.
@@ -53,9 +57,11 @@ For old changelogs, check on [XDA link](https://forum.xda-developers.com/apps/ma
 
 
 ### News
-News (12/31/2017)
-V3 for Nougat and lower android versions added to Magisk Rep
-V3 BETA for Oreo version always under development, sorry for delay..
+#### 02/25/2018
+-BT issue fix for v3 and v3.1 (thanks to Serj for test and feedback on Tg!)
+-v3 with SELinux and v3.1 with SELinux have been deleted from Magisk Repo because on Magisk v15+, SELinux is automaticly set into permissive mode (normally..) for module works.
+-It's becoming useless to having SELinux version on Magisk repo and XDA, so i let here the fixed SELinux ZIP files here (XDA) just in case of..
+-Total numbers of downloads added.
 
 ### Compatibilities
 
@@ -79,6 +85,7 @@ If not works propeply, just make fresh Magisk install and install the module aga
 
 Telegram group: [https://t.me/exsdcard](https://t.me/exsdcard)
 
+
 ### Thanks
 Many thanks to theses users/devs to have helped me for this update !
 @_Exeedy
@@ -88,12 +95,9 @@ Many thanks to theses users/devs to have helped me for this update !
 @ahrion
 
 
-### XDA officials downloads thread:
-[https://forum.xda-developers.com/apps/magisk/module-exsdcard-write-access-enabler-t3670428](https://forum.xda-developers.com/apps/magisk/module-exsdcard-write-access-enabler-t3670428)
-
-
 Please give your feedbacks by specify your ROM name/version and your model phone too on the XDA thread.
 
 
 ### Github source: <br />
 [https://github.com/xerta555/ExSDCard_Write_Access_Enabler_v3.1](https://github.com/xerta555/ExSDCard_Write_Access_Enabler_v3.1)
+
