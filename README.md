@@ -3,10 +3,6 @@
 ![alt text](https://img11.hostingpics.net/pics/401005microsdcardicon66397.png "Logo ExSDCard")
 
 
-### Introduction
-Since the first version of the module "v9 Module - SD Write Access Enabler v1" is no longer compatible with Magisk v14, i have decided to update it.
-
-
 ### Short explanations
 Since Nougat, many apps (old and recently) cannot longer read/write propeply on external SDCard, its due to 6.0 permissions storage updates/changes.
 
@@ -14,15 +10,13 @@ So apps devs must update to date their apps, or you must change your habit, that
 
 By edit an xml file in system partition, we can get a new access to our external SDcard with all necessary permissions.
 This mod make that in system-lessy mode (powered by Magisk).
-The new access path for your external SDCard: /mnt/media_rw/SDCARDNUMBER/
+
+## The new access path for your external SDCard: /mnt/media_rw/SDCARDNUMBER/
 
 With the v3, the modification script has been completly review and tested.
 The v3.1 is especially designed for Oreo users, but it stay compatible for any Android version, it has been completly review and tested.
 
-Please note: On Oreo, many manufacturers have started to replacing FUSE by SDCardFS, some users have reported to me that my module have works on their stocks/customs ROMs, and not for other ones.
-Unfortunatly i cannot make anything versus it and honestly i don't think that the situation will evolve because the config of SDcardFS is setup at the kernel level.
-
-About special feature on V3.1, look @XDA thread.
+About special feature on V3.2, look @XDA thread.
 
 Due to some users bugs reports, its seems that on some ROMs/kernels, its impossible to MODD the system propeply without toggler the SELinux from enforcing to the permissive mode.
 Its why i have added two versions with one wich contain the SELinux toggler
@@ -34,21 +28,11 @@ In other words: one Modules ZIP version with an SELinux toggler for each module 
 
 
 ### Changelog
-V3.1:
-- Two other txt files can be taked in consideration, they contains some more/less permissions, its has help been help some users.
-- If you want to use one of them, to make it happen, you must change the desired value from no to yes in the "ExSDCard.config.txt" file
-- For Oreo users:
-- You can setup same as explained before the txt config file, and place them in "/data/media/0/"
-- If needed, you can edit the "ExSDCard.O.*.applist.txt" file(s) by write your app(s) package(s) name(s) one by file, two different apps packages names have been writed in two separated TXT files in attachment, you can replace or lets them, as you want. By adding one of this file, the corresponding XML files will be created and putted in the right MODDIR path, needless to say do not touch the "privapp-permissions-com.package.name.xml" file, otherwise the boot script willn't works, you are warned now.
-- Several ZIP versions available:
-- one will be for Android 7.1.2 and lower
-- one for Android 7.1.2 and lower with an SELinux toggler
-- one for Android 8.x.x and lower
-- one for Android 8.x.x and lower with an SELinux toggler
-If you don't get any permissions issues with the v3, you can continue to use it, you will not see the notification in Download section from Magisk Manager app.
-If you would like to get the new version and that the v3 version works successfull on your phone, you can simply install the v3.1 and nothing more, it will works same as on v3.
+v3.2:
+Adjustment made in the module to force SDCardFS to be disabled in favor of FUSE.
+From there, various problems encountered on some Oreo ROMs should be fixed.
 
-For old changelogs, check on [XDA link](https://forum.xda-developers.com/apps/magisk/module-exsdcard-write-access-enabler-t3670428)
+For old changelogs: [Pastbin](https://pastebin.com/rcxaVbnR)
 
 
 ### On your phones:
@@ -57,14 +41,11 @@ For old changelogs, check on [XDA link](https://forum.xda-developers.com/apps/ma
 
 
 ### News
-#### 02/25/2018
--BT issue fix for v3 and v3.1 (thanks to Serj for test and feedback on Tg!)
--v3 with SELinux and v3.1 with SELinux have been deleted from Magisk Repo because on Magisk v15+, SELinux is automaticly set into permissive mode (normally..) for module works.
--It's becoming useless to having SELinux version on Magisk repo and XDA, so i let here the fixed SELinux ZIP files here (XDA) just in case of..
--Total numbers of downloads added.
+v3.2 has been added (XDA, Magisk Repo and webhosters dl), it come to fix issues encured by several Oreo users. Flashable ZIP updated too.
+Old updates has been moved on Pastbin to clear the main OP.
 
 ### Compatibilities
-
+ Certified and tested on:
 - LG G3 (D855 - F400L) Resurection Remix 7.1.2
 - HTC M8 LOS 14
 - HTC Sprint EVO 4G LTE
@@ -87,7 +68,7 @@ Telegram group: [https://t.me/exsdcard](https://t.me/exsdcard)
 
 
 ### Thanks
-Many thanks to theses users/devs to have helped me for this update !
+@topjohnwu
 @_Exeedy
 @m0yP
 @VR25
