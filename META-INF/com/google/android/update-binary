@@ -302,7 +302,7 @@ set_permissions
 unmount_magisk_img
 
 $BOOTMODE || recovery_cleanup
-cd /data/ && rm -rf /ExSDCard/
+cd /data/ && rm -rf ./ExSDCard/
 
 ui_print "----------------------------------------------"
 
