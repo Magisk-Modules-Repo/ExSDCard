@@ -38,15 +38,6 @@ require_new_magisk() {
 OUTFD=$2
 ZIP=$3
 
-mount /data 2>/dev/null
-if mount | grep -q /data; then
-    ui_print "- /data is now mounted"
-else
-    ui_print ""
-	ui_print "/data cannot be mounted, please mount it manually"
-	ui_print "The install script cannot continue !"
-fi
-
 ##########################################################################################
 # Tasks before module setup
 ##########################################################################################
