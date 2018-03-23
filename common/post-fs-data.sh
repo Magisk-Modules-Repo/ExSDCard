@@ -23,8 +23,8 @@ EXOREOAPPBAK=/Magisk/ExSDCard/ExSDCard_Oreo_apps.bak
 # Edit perm file settings
 mkdir -p $PERMDIR
 cp -af $SYSPERMDIRFILE $PERMDIR
-sed -i '/<group gid=\"sdcard_rw\" \/>/a\        <group gid="sdcard_all" />\' $PERMDIR
-chmod 644 $PERMDIR
+sed -i '/<group gid=\"sdcard_rw\" \/>/a\        <group gid="sdcard_all" />\' $SYSPERMDIRFILE
+chmod 644 $SYSPERMDIRFILE
 
 
 # Check if selinux must to be toggle into permissive mode
