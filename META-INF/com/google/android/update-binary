@@ -38,137 +38,7 @@ require_new_magisk() {
 OUTFD=$2
 ZIP=$3
 
-##########################################################################################
-# Tasks before module setup
-##########################################################################################
-ui_print ""
-ui_print ""
-ui_print "----------------------------------------------"
-ui_print "Tasks before module setup are needed.."
-ui_print "Install script by Rom"
-ui_print ""
-ui_print ""
-
-TMPFOLDER=/data/ExSDCard
-INTERNALPATH=/data/media/0
-XMLFILE=ExSDCard.config.txt
-
-
-mkdir -p $TMPFOLDER/system/etc/permissions/
-mkdir -p $INSTALLER/system/etc/permissions/
-
-ui_print "Create the working folder and sub-folders"
-
-ui_print "Here we go !!! :)"
-ui_print ""
-
-
-cd $INTERNALPATH/
-# Check if V1 or V2 is enabled in ExSDCard.config.txt
-if [ -e "$XMLFILE" ]; then
-	if grep -q "yes" $XMLFILE | head -2 && grep -q "yes" ExSDCard.config.txt | head -3
-	then
-		ui_print "original.platform.1.xml and original.platform.2.xml files"
-		ui_print "can only help a minority of users who need some special(s)"
-		ui_print "permissions, so it's useless to put the two values to "yes""
-		ui_print "in the config file, just one (if needed) is necessary."
-	sed -i '2s/yes/no/' $XMLFILE
-	sed -i '3s/yes/no/' $XMLFILE
-	fi
-	
-	
-		if grep -q "yes" $XMLFILE | head -2
-		then
-			ui_print "original.platform.1.xml as been enabled"
-			ui_print "in ExSDCard.config.txt file"
-			ui_print ""
-			ui_print "..."
-			ui_print ""
-			ui_print "original.platform.1.xml was found"
-			ui_print "on internal storage"
-			unzip -o "$ZIP" -d original.platform.1.xml -d $TMPFOLDER/system/etc/permissions/ >&2
-			mv $TMPFOLDER/system/etc/permissions/original.platform.1.xml $INSTALLER/system/etc/permissions/platform.xml
-			rm -f $TMPFOLDER/system/etc/permissions/platform.xml
-			ui_print "original.platform.1.xml was added to ZIP"
-			ui_print "as platform.xml"
-			ui_print ""
-			ui_print ""
-	else
-		ui_print "original.platform.1.xml was not found"
-		ui_print "on internal storage"
-		ui_print ""
-		ui_print "Install scrip continue.."
-		ui_print ""
-	fi
-		if grep -q "yes" ExSDCard.config.txt | head -3
-		then
-			ui_print "original.platform.2.xml was found"
-			ui_print "on internal storage"
-			unzip -o "$ZIP" -d original.platform.2.xml -d $TMPFOLDER/system/etc/permissions/ >&2
-			mv $TMPFOLDER/system/etc/permissions/original.platform.2.xml $INSTALLER/system/etc/permissions/platform.xml
-			rm -f $TMPFOLDER/system/etc/permissions/platform.xml
-	else
-		ui_print "original.platform.2.xml was not found"
-		ui_print "on internal storage"
-		ui_print ""
-		ui_print "install scrip continue.."
-		ui_print ""
-	fi
-else
-	ui_print "ExSDCard.config.txt result:"
-	ui_print "=> Not found on internal storage"
-	ui_print ""
-fi
-
-# Extract Oreo config files
-unzip -o "$ZIP" privapp-permissions-com.package.name.xml -d $TMPFOLDER/ >&2
-ui_print "Copying default XML file perm from"
-ui_print "given flashable ZIP in the work folder"
-ui_print "(just in case of..)"
-ui_print ""
-
-cd $INTERNALPATH/
-if ls -al | grep -q "ExSDCard.O."
-then
-	ui_print ""
-	ui_print "Work in progress..."
-	ui_print "One or more ExSDCard.O.*.applist.txt files"
-	ui_print "as been found"
-	ui_print ""
-	NAMES=$(awk '{ print }' ExSDCard.O.*.applist.txt)
-			printf '%s\n' "$NAMES" | while IFS= read -r line
-			do
-			sed "s/com.package.name/$line/" < $TMPFOLDER/privapp-permissions-com.package.name.xml >  $TMPFOLDER/system/etc/permissions/privapp-permissions-$line.xml
-		
-		cd $TMPFOLDER/system/etc/permissions/
-		cp -af ./* $INSTALLER/system/etc/permissions/
-		ui_print "All created XML files added into $INSTALLER/system/etc/permissions/"
-		ui-print "End of tasks for the MOD !"
-		ui-print ""
-	done
-else
-	ui_print "!!---------------------------------!!"
-	ui_print "No applist.xml file(s) has been found.."
-	ui_print ""
-	ui_print "If you want to have an XML file "
-	ui_print "permission for Oreo running under Magisk"
-	ui_print "so create a TXT file called"
-	ui_print "=> ExSDCard.O.*.applist.txt <="
-	ui_print "replace * by any number"
-	ui_print "and place them on root of your"
-	ui_print "sdcard."
-	ui_print "For additional support come on"
-	ui_print "XDA/Telegram thread"
-fi
-
-
-##########################################################################################
-# End of tasks for the MOD !
-##########################################################################################
-ui-print "Magisk tasks can beginning"
-ui-print "All credit @topjhonwu"
-
-
+mount /data 2>/dev/null
 
 # Utility functions must exist
 [ -f $MAGISKBIN/util_functions.sh ] || require_new_magisk
@@ -200,7 +70,7 @@ $BOOTMODE && boot_actions || recovery_actions
 ##########################################################################################
 
 # Extract common files
-unzip -o "$ZIP" module.prop config.sh original.platform.1.xml original.platform.2.xml privapp-permissions-com.package.name.xml 'common/*' -d $INSTALLER >&2
+unzip -o "$ZIP" module.prop config.sh 'common/*' -d $INSTALLER >&2
 
 [ ! -f $INSTALLER/config.sh ] && abort "! Unable to extract zip file!"
 # Load configurations
@@ -266,24 +136,8 @@ $POSTFSDATA && cp -af $INSTALLER/common/post-fs-data.sh $MODPATH/post-fs-data.sh
 # service mode scripts
 $LATESTARTSERVICE && cp -af $INSTALLER/common/service.sh $MODPATH/service.sh
 
-# v1 and v2 tasks
-cp -af $INSTALLER/original.platform.1.xml $MODPATH/original.platform.1.xml
-cp -af $INSTALLER/original.platform.2.xml $MODPATH/original.platform.2.xml
-
-# Default xml file perms
-cp -af $INSTALLER/privapp-permissions-com.package.name.xml $MODPATH/privapp-permissions-com.package.name.xml
-
-# XML perm files for Oreo
-cp -af $INSTALLER/system/etc/permissions/* $MODPATH/system/etc/permissions/
-
-# Copy the custom xml file perm in MODPATH if needed
-if [ -e "$INSTALLER/system/etc/permissions/platform.xml" ]; then
-	cp -af $INSTALLER/system/etc/permissions/platform.xml $MODPATH/system/etc/permissions/
-fi
-
 ui_print "- Setting permissions"
 set_permissions
-
 
 ##########################################################################################
 # Finalizing
@@ -293,11 +147,7 @@ set_permissions
 unmount_magisk_img
 
 $BOOTMODE || recovery_cleanup
-cd /data/ && rm -rf ./ExSDCard/
-
-ui_print "----------------------------------------------"
+rm -rf $TMPDIR
 
 ui_print "- Done"
-ui_print "- This version of the module"
-ui_print "- Works on Android 5.0 - 8.X.X"
 exit 0
