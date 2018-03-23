@@ -15,13 +15,14 @@ ANDROVERSION=`grep_prop ro.build.version.release $BUILDPROP`
 SYSSEMODPATH=$MODPATH/system/etc/init.d/
 SYSSEMODPATHFILE=$MODPATH/system/etc/init.d/selinux0
 PERMDIR=$MODDIR/system/etc/permissions/
-SYSPERMDIR=/system/etc/permissions/
+SYSPERMDIRFILE=/system/etc/permissions/platform.xml
 OPERMISSIONS=$MODDIR/system/etc/O-permissions/
 EXOREOAPP=/Magisk/ExSDCard/ExSDCard_Oreo_apps
 EXOREOAPPBAK=/Magisk/ExSDCard/ExSDCard_Oreo_apps.bak
 
 # Edit perm file settings
-cp -af $SYSPERMDIR $PERMDIR
+mkdir -p $PERMDIR
+cp -af $SYSPERMDIRFILE $PERMDIR
 sed -i '/<permission name=\"android\.permission\.WRITE\_EXTERNAL\_STORAGE\" \/>/a\        <group gid=\"sdcard_r\" />\n\ \       \<group gid="sdcard_rw\" />\n\ \       \<group gid="media_rw\" /> ' $PERMDIR
 chmod 644 $PERMDIR
 
