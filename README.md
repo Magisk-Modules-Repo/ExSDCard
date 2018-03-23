@@ -9,7 +9,12 @@
 
 ###### A little note: if with this module you get access permissions issues, just install the ZIP version with SELinux toggler on the XDA thread.
 
-
+v3.3:
+- Oreo support enhanced
+- "ExSDCard.config.txt" file configuration moved into post-fs-data stage, no more need to be configured by users and easily to coded
+- SELinux support is now integrated in the main ZIP, so no more two ZIPs versions
+- "ExSDCard.O.*.applist.txt" config file(s) no longer needed
+        Instead of => a simple file called "ExSDCard_Oreo_apps" put in "/Magisk/ExSDCard/" with all apps packages names that need Oreo specials permissions (one by line)
 
 ### Official XDA thread:
 [https://forum.xda-developers.com/apps/magisk/module-exsdcard-write-access-enabler-t3670428](https://forum.xda-developers.com/apps/magisk/module-exsdcard-write-access-enabler-t3670428)
@@ -20,16 +25,15 @@
 ![alt text](https://img11.hostingpics.net/pics/944605Screenshot20170909143851.png "SCR_Onyourphone2")
 ###### (Don't take in consideration the version number on screenshoot)
 
-### News 03/11/2018
-v3.2 has been added (XDA, Magisk Repo and webhosters dl), it come to fix issues encured by several Oreo users. Flashable ZIP updated too.
-Old updates has been moved on Pastbin to clear the main OP.
+### News 23/03
+v3.3 changes pushed on Magisk Modules Repo, downloads links updated, compatibility list simplified.
 
 I let the v3 on Magisk Repo (here) for users who just want to get the new path.
 
 
 ### Compatibility
 => Compatible with most Android phones/ROMs (users feedbacks)
-Android 5.0 is required to run Magisk propeply.
+Android 5.0 at least is required to run Magisk propeply.
 
 
 #### If the module won't works propeply, please making a fresh install of Magisk & the module.
