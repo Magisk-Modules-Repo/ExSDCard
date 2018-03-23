@@ -14,7 +14,7 @@ PHONEID=`grep_prop ro.product.device $BUILDPROP`
 ANDROVERSION=`grep_prop ro.build.version.release $BUILDPROP`
 SYSSEMODPATH=$MODPATH/system/etc/init.d/
 SYSSEMODPATHFILE=$MODPATH/system/etc/init.d/selinux0
-PERMDIR=$MODDIR/system/etc/permissions/
+PERMDIR=$MODDIR/system/etc/permissions
 SYSPERMDIRFILE=/system/etc/permissions/platform.xml
 OPERMISSIONS=$MODDIR/system/etc/O-permissions/
 EXOREOAPP=/Magisk/ExSDCard/ExSDCard_Oreo_apps
@@ -23,8 +23,8 @@ EXOREOAPPBAK=/Magisk/ExSDCard/ExSDCard_Oreo_apps.bak
 # Edit perm file settings
 mkdir -p $PERMDIR
 cp -af $SYSPERMDIRFILE $PERMDIR
-sed -i '/<group gid=\"sdcard_rw\" \/>/a\        <group gid="sdcard_all" />\' $SYSPERMDIRFILE
-chmod 644 $SYSPERMDIRFILE
+sed -i '/<group gid=\"sdcard_rw\" \/>/a\        <group gid="sdcard_all" />\' $PERMDIR/platform.xml
+chmod 644 $PERMDIR/platform.xml
 
 
 # Check if selinux must to be toggle into permissive mode
