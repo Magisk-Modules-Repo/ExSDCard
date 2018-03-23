@@ -23,7 +23,7 @@ EXOREOAPPBAK=/Magisk/ExSDCard/ExSDCard_Oreo_apps.bak
 # Edit perm file settings
 mkdir -p $PERMDIR
 cp -af $SYSPERMDIRFILE $PERMDIR
-sed -i '/<permission name=\"android\.permission\.WRITE\_EXTERNAL\_STORAGE\" \/>/a\        <group gid=\"sdcard_r\" />\n\ \       \<group gid="sdcard_rw\" />\n\ \       \<group gid="media_rw\" /> ' $PERMDIR
+sed -i '/<group gid=\"sdcard_rw\" \/>/a\        <group gid="sdcard_all" />\' $PERMDIR
 chmod 644 $PERMDIR
 
 
