@@ -38,25 +38,14 @@ fi
 
 
 # Check if FUSE is enabled in build.prop file
-if grep 'persist.fuse_sdcard=true' $BUILDPROP; then
-	yes | cp -a $BUILDPROP $SYSTEMLESSPROP
-	sed -i 's/^persist.fuse_sdcard=.*/persist.fuse_sdcard=false/' $SYSTEMLESSPROP
+if grep -qs 'persist.fuse_sdcard=true' $SYSTEMLESSPROP; then
+	sed -i 's/^persist.fuse_sdcard=true/persist.fuse_sdcard=false/' $SYSTEMLESSPROP
 fi
-if grep 'ro.sys.sdcardfs' $BUILDPROP; then
-	if [ -a $SYSTEMLESSPROP ]; then
-		sed -i 's/^ro.sys.sdcardfs=.*/ro.sys.sdcardfs=false/' $SYSTEMLESSPROP
-	else
-		yes | cp -a $BUILDPROP $SYSTEMLESSPROP
-		sed -i 's/^ro.sys.sdcardfs=.*/ro.sys.sdcardfs=false/' $SYSTEMLESSPROP
-	fi
+if grep -qs 'ro.sys.sdcardfs=true' $SYSTEMLESSPROP; then
+	sed -i 's/^ro.sys.sdcardfs=true/ro.sys.sdcardfs=false/' $SYSTEMLESSPROP
 fi
-if grep 'persist.sys.sdcardfs' $BUILDPROP; then
-	if [ -a $SYSTEMLESSPROP ]; then
-		sed -i 's/^persist.sys.sdcardfs=.*/persist.sys.sdcardfs=false/' $SYSTEMLESSPROP
-	else
-		yes | cp -a $BUILDPROP $SYSTEMLESSPROP
-		sed -i 's/^persist.sys.sdcardfs=.*/persist.sys.sdcardfs=false/' $SYSTEMLESSPROP
-	fi
+if grep -qs 'persist.sys.sdcardfs' $SYSTEMLESSPROP; then
+	sed -i 's/^persist.sys.sdcardfs=true/persist.sys.sdcardfs=false/' $SYSTEMLESSPROP
 fi
 
 
