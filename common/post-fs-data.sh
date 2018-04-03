@@ -16,9 +16,9 @@ SYSSEMODPATH=$MODPATH/system/etc/init.d/
 SYSSEMODPATHFILE=$MODPATH/system/etc/init.d/selinux0
 PERMDIR=$MODDIR/system/etc/permissions
 SYSPERMDIRFILE=/system/etc/permissions/platform.xml
-OPERMISSIONS=$MODDIR/system/etc/O-permissions/
-EXOREOAPP=/Magisk/ExSDCard/ExSDCard_Oreo_apps
-EXOREOAPPBAK=/Magisk/ExSDCard/ExSDCard_Oreo_apps.bak
+OPERMISSIONS=$MODDIR/system/etc/O-permissions
+EXOREOAPP=$MODDIR/ExSDCard_Oreo_apps
+EXOREOAPPBAK=$MODDIR/ExSDCard_Oreo_apps.bak
 
 # Edit perm file settings
 mkdir -p $PERMDIR
@@ -29,25 +29,37 @@ chmod 644 $PERMDIR/platform.xml
 
 
 # Check if selinux must to be toggle into permissive mode
-if grep -wq '8' $ANDROVERSION; then
-	if grep -wq 'j5xnlte\|tissot_sprout\|kenzo\|manning\|ha3g\|D5803\|D2303\|maple_dsds\|a3y17\|Z00A\|dreamlte\|tissot_sprout\|GT-P7510\|hlte\|dreamlteks' $PHONEID; then
+cp $BUILDPROP $SYSTEMLESSPROP
+if grep -wqs '8' $SYSTEMLESSPROP
+	if grep -qs 'j5xnlte\|tissot_sprout\|kenzo\|manning\|ha3g\|D5803\|D2303\|maple_dsds\|a3y17\|Z00A\|dreamlte\|tissot_sprout\|GT-P7510\|hlte\|dreamlteks\|z3c\|sf340n' $SYSTEMLESSPROP; then
 		mkdir -p $SYSSEMODPATH
 		printf "setenforce 0" >> $SYSSEMODPATHFILE
+		adb shell setenforce 0
 	fi
+else
+	rm -f $SYSTEMLESSPROP
 fi
 
 
 # Check if FUSE is enabled in build.prop file
-if grep -qs 'persist.fuse_sdcard=true' $SYSTEMLESSPROP; then
-	sed -i 's/^persist.fuse_sdcard=true/persist.fuse_sdcard=false/' $SYSTEMLESSPROP
-fi
+cp -af $BUILDPROP $SYSTEMLESSPROP
+
 if grep -qs 'ro.sys.sdcardfs=true' $SYSTEMLESSPROP; then
 	sed -i 's/^ro.sys.sdcardfs=true/ro.sys.sdcardfs=false/' $SYSTEMLESSPROP
+fi
+if grep -qs 'persist.esdfs_sdcard=true' $SYSTEMLESSPROP; then
+	sed -i 's/^persist.esdfs_sdcard=false' $SYSTEMLESSPROP
 fi
 if grep -qs 'persist.sys.sdcardfs' $SYSTEMLESSPROP; then
 	sed -i 's/^persist.sys.sdcardfs=true/persist.sys.sdcardfs=false/' $SYSTEMLESSPROP
 fi
 
+# Force ESDFS and SDCardFS to be disabled
+resetprop persist.esdfs_sdcard false || setprop persist.esdfs_sdcard false
+resetprop persist.sys.sdcardfs force_off || setprop persist.sys.sdcardfs force_off
+
+# Force FUSE to be enabled
+resetprop persist.fuse_sdcard true || setprop persist.fuse_sdcard true
 
 if [ -a "$EXOREOAPP" ]; then
 	cp $EXOREOAPP $EXOREOAPPBAK
@@ -65,4 +77,5 @@ if [ -a "$EXOREOAPP" ]; then
 
 	chmod -R 644 $PERMDIR/*
 fi
+
 
