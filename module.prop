@@ -1,7 +1,7 @@
 id=ExSDCard
 name=ExSDCard Access Enabler
-version=v3.3.1
-versionCode=331
+version=v3.4
+versionCode=34
 author=Rom
 description=Enables external SDCard write access for your Apps on Nougat and Oreo, including Oreo dedicated feature ! New path for your sdcard: "/mnt/media_rw/".
 minMagisk=1500
