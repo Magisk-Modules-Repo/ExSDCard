@@ -65,7 +65,7 @@ if [ -a "$EXOREOAPP" ]; then
 	cp $EXOREOAPP $EXOREOAPPBAK
 	NEW=$(awk '{ print }' $EXOREOAPPBAK)
 	mkdir $OPERMISSIONS
-	printf '<?xml version="1.0" encoding="utf-8"?>\n<permissions>\n  <privapp-permissions package="com.package.name">\n	<permission name="android.permission.DUMP" />\n	<permission name="android.permission.READ_LOGS" />\n	<permission name="android.permission.DEVICE_POWER" />\n  </privapp-permissions>\n</permissions>\n' >> $MODDIR/privapp-permissions-com.package.name.xml
+	printf '<?xml version="1.0" encoding="utf-8"?>\n<permissions>\n  <privapp-permissions package="com.package.name">\n	<permission name="android.permission.DUMP" />\n	<permission name="android.permission.READ_LOGS" />\n	<permission name="android.permission.TETHER_PRIVILEGED" />\n    <permission name="android.permission.MANAGE_USERS" />\n    <permission name="android.permission.DEVICE_POWER" />\n  </privapp-permissions>\n</permissions>\n' >> $MODDIR/privapp-permissions-com.package.name.xml
 		
 		printf '%s\n' "$NEW" | while IFS= read -r line
 		do sed "s/com.package.name/$line/" < $MODDIR/privapp-permissions-com.package.name.xml >  $OPERMISSIONS/privapp-permissions-$line.xml
@@ -77,5 +77,3 @@ if [ -a "$EXOREOAPP" ]; then
 
 	chmod -R 644 $PERMDIR/*
 fi
-
-
