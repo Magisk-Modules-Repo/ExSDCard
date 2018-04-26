@@ -69,7 +69,7 @@ if [ -a "$EXOREOAPP" ]; then
 		
 		printf '%s\n' "$NEW" | while IFS= read -r line
 		do sed "s/com.package.name/$line/" < $MODDIR/privapp-permissions-com.package.name.xml >  $OPERMISSIONS/privapp-permissions-$line.xml
-
+		done
 	cp -n $OPERMISSIONS/*.xml $PERMDIR/
 
 	rm -rf $OPERMISSIONS/*
