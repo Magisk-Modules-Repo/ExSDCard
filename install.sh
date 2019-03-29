@@ -123,7 +123,7 @@ REPLACE="
 
 print_modname() {
   ui_print "--------------------------------"
-  ui_print "ExSDCard Write Access Enabler v3.5"
+  ui_print "ExSDCard Write Access Enabler v3.6"
   ui_print "with Oreo support"
   ui_print "For Magisk"
   ui_print "By Rom"
