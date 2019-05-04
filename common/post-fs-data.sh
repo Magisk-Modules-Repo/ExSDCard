@@ -70,7 +70,7 @@ if [ -a "$EXOREOAPP" ]; then
 	printf '<?xml version="1.0" encoding="utf-8"?>\n<permissions>\n  <privapp-permissions package="com.package.name">\n	<permission name="android.permission.DUMP" />\n	<permission name="android.permission.READ_LOGS" />\n	<permission name="android.permission.DEVICE_POWER" />\n  </privapp-permissions>\n</permissions>\n' >> $MODDIR/privapp-permissions-com.package.name.xml
 		
 		printf '%s\n' "$NEW" | while IFS= read -r line
-		do sed "s/com.package.name/$line/" < $MODDIR/privapp-permissions-com.package.name.xml >  $OPERMISSIONS/privapp-permissions-$line.xml
+		do sed "s/com.package.name/$line/" < $MODDIR/privapp-permissions-com.package.name.xml >  $OPERMISSIONS/privapp-permissions-$line.xml; done
 
 	cp -n $OPERMISSIONS/*.xml $PERMDIR/
 
