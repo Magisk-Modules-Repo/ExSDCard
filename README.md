@@ -17,7 +17,7 @@ v3.4
 <a href="https://forum.xda-developers.com/apps/magisk/module-exsdcard-write-access-enabler-t3670428"><img src="https://img.shields.io/badge/XDA-Thread-yellow.svg?longCache=true&style=flat-square"></a><br />
 
 ### Telegram group:
-<a href="https://t.me/exsdcard<img"><img src="https://img.shields.io/badge/Telegram-Channel-blue.svg?longCache=true&style=flat-square"></a>
+<a href="https://t.me/exsdcard"><img src="https://img.shields.io/badge/Telegram-Channel-blue.svg?longCache=true&style=flat-square"></a><br />
 
 ### On your phones:
 ![alt text](https://image.ibb.co/hRkRXH/435669_Screenshot20171008172017.png "SCR_Onyourphone1")
