@@ -2,6 +2,8 @@
 
 ![alt text](https://image.ibb.co/cdgBzx/401005microsdcardicon66397.png "Logo ExSDCard")
 
+### WARNING: This module is NOT recommended for devices that running Android 8.0+ (Oreo).
+
 ### Short explanation
 #### This module will give you a new path to your external sdcard storage with all necessary R/W access permissions.
 
